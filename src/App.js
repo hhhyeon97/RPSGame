@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
 import Box from './component/Box'; // 박스 컴포넌트 불러오기
 
@@ -32,13 +32,17 @@ const choice = {
 };
 
 function App() {
+  const [userSelect, setUserSelect] = useState(null);
   const play = (userChoice) => {
-    console.log('선택됨!', userChoice);
+    //console.log('선택됨!', userChoice);
+    //userSelect = choice[userChoice]
+    // 위 형태처럼 기존 변수형태처럼 값 넣으려고 하면 안 됨 !
+    setUserSelect(choice[userChoice]);
   };
   return (
     <div>
       <div className="main">
-        <Box title="you" />
+        <Box title="you" item={userSelect} />
         <Box title="computer" />
       </div>
       <div className="main">
