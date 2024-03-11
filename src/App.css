@@ -1,11 +1,53 @@
+@font-face {
+  font-family: 'MaplestoryOTFBold';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/MaplestoryOTFBold.woff')
+    format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 .box {
-  border: 2px solid black;
-  width: 500px;
+  border: 5px solid rgb(218, 218, 218);
+  width: 400px;
+  background-color: aliceblue;
+  border-radius: 4px;
+  text-align: center;
+  height: 400px;
   margin-left: 20px;
 }
 
 .item-img {
-  width: 400px;
+  width: 280px;
+  height: 250px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-image: url('https://i.pinimg.com/564x/0d/12/da/0d12da9fa305616fa8949d2266708cda.jpg');
+  background-size: cover;
+  background-position: center;
+  position: relative; /* 가상 요소를 위한 기준으로 설정 */
+  height: 100vh; /* 화면 전체 높이에 맞게 설정 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'MaplestoryOTFBold';
+}
+
+.start {
+  text-align: center;
+}
+.start button {
+  border: 3px solid black;
+  border-radius: 6px;
+  background-color: white;
+  outline: none;
+  cursor: pointer;
+  width: 200px;
+  height: 130px;
+  font-size: 40px;
+  font-family: 'MaplestoryOTFBold';
 }
 
 .main {
@@ -15,14 +57,77 @@
 }
 
 .win {
-  border: 5px solid green;
-  color: green;
+  border: 5px solid #8dba7f;
+  color: #8dba7f;
 }
 .tie {
-  border: 5px solid rgb(0, 0, 0);
-  color: black;
+  border: 5px solid #5796d9;
+  color: #5796d9;
 }
 .lose {
-  border: 5px solid rgb(228, 137, 102);
-  color: rgb(228, 137, 102);
+  border: 5px solid #cc5e70;
+  color: #cc5e70;
+}
+
+.game-btn {
+  border: none;
+  background: none;
+  outline: none;
+}
+
+i {
+  font-size: 60px;
+  cursor: pointer;
+  margin-left: 20px;
+  color: white;
+}
+
+@media only screen and (max-width: 768px) {
+  .box {
+    width: 200px;
+    height: 200px;
+    margin-bottom: 20px;
+    position: relative;
+    left: 12px;
+  }
+  .item-img {
+    width: 80%;
+    height: 50%;
+  }
+  .main {
+    flex-direction: column;
+  }
+  .btn-area {
+    flex-direction: row;
+  }
+  .sci {
+    position: relative;
+    right: 10px;
+    top: 3px;
+  }
+  .rock {
+    position: relative;
+    right: 7px;
+  }
+  .paper {
+    position: relative;
+    right: 9px;
+  }
+  h3 {
+    display: none;
+  }
+
+  .start button {
+    width: 170px;
+    height: 100px;
+    font-size: 25px;
+  }
+  h1,
+  h2 {
+    font-size: 20px;
+  }
+  h2 {
+    position: relative;
+    bottom: 10px;
+  }
 }

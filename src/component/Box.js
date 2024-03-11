@@ -16,11 +16,16 @@ const Box = (props) => {
   } else {
     result = props.result;
   }
+
+  // 이미지가 있을 때만 이미지를 표시하도록 설정
+  const imgSrc = props.item ? props.item.img : null;
+
   return (
-    <div className={'box ${result}'}>
+    <div className={`box ${result}`}>
       <h1>{props.title}</h1>
-      <h3>{props.item && props.item.name}</h3>
-      <img className="item-img" src={props.item && props.item.img} />
+      {/* <h3>{props.item && props.item.name}</h3> */}
+
+      {imgSrc && <img className="item-img" src={imgSrc} alt="Game item" />}
       <h2>{result}</h2>
     </div>
   );
