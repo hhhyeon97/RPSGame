@@ -33,17 +33,34 @@ const choice = {
 
 function App() {
   const [userSelect, setUserSelect] = useState(null);
+  const [computerSelect, setComputerSelect] = useState(null);
+
   const play = (userChoice) => {
     //console.log('선택됨!', userChoice);
     //userSelect = choice[userChoice]
     // 위 형태처럼 기존 변수형태처럼 값 넣으려고 하면 안 됨 !
     setUserSelect(choice[userChoice]);
+    // 랜덤선택하는 함수
+    let computerChoice = randomChoice();
+    setComputerSelect(computerChoice);
+  };
+  const randomChoice = () => {
+    // 객체를 배열로 바꾸기
+    let itemArray = Object.keys(choice); // Object.keys - > 객체에 있는 키 값만 뽑아서 배열로 만들어주는 함수다.
+    //console.log('아이템 배열', itemArray);
+    // 객체를 배열로 바꾸면 각 아이템은 인덱스 번호를 갖게 됨 - > 가위바위보에서는 경우가 3가지니까 0,1,2 사이에서 랜덤한 값
+    // 하나만 받아오면 랜덤선택을 할 수 있게 됨 !
+    let randomItem = Math.floor(Math.random() * itemArray.length); //Math.floor = > 소수점 아래 버리기
+    //console.log('랜덤아이템', randomItem);
+    let final = itemArray[randomItem];
+    console.log('final', final);
+    return choice[final]; // 여기서 리턴된 값은 위에서 호출한 computerChoice 안에 들어간다.
   };
   return (
     <div>
       <div className="main">
         <Box title="you" item={userSelect} />
-        <Box title="computer" />
+        <Box title="computer" item={computerSelect} />
       </div>
       <div className="main">
         <button onClick={() => play('scissors')}>가위</button>
