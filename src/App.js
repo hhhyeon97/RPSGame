@@ -9,6 +9,9 @@ import Box from './component/Box'; // 박스 컴포넌트 불러오기
 // 5. 3,4의 결과를 가지고 누가 이겼는지 승패를 결정한다.
 // 6. 승패 결과에 따라 테두리 색이 바뀐다. (이기면 초록, 지면 빨강, 비기면 검정)
 
+// ++ 스스로 고민해보기
+// 유저와 반대되는 컴퓨터 결과 보이게 하기 / 승패에 결과에 따라 테두리 색 바뀌어 보이게 하기
+
 // jsx 컴포넌트는 반드시 하나의 덩어리를 리턴해야 한다.
 // onclick x - >  ☆ onClick
 
@@ -34,7 +37,7 @@ const choice = {
 function App() {
   const [userSelect, setUserSelect] = useState(null);
   const [computerSelect, setComputerSelect] = useState(null);
-
+  const [result, setResult] = useState('');
   const play = (userChoice) => {
     //console.log('선택됨!', userChoice);
     //userSelect = choice[userChoice]
@@ -43,7 +46,44 @@ function App() {
     // 랜덤선택하는 함수
     let computerChoice = randomChoice();
     setComputerSelect(computerChoice);
+    judgement(choice[userChoice], computerChoice);
+    setResult(judgement(choice[userChoice], computerChoice));
   };
+
+  // 유저 입장에서 쓰인 결과 판별 함수
+  const judgement = (user, computer) => {
+    console.log('user : ', user, 'computer : ', computer);
+
+    // 가위바위보 로직 생각해보기
+    // user == computer tie
+    // user == rock, computer == scissors / user 이김
+    // user == rock, computer == paper / user 졌다
+    // user == scissors , computer == paper / user 이김
+    // user == scissors , computer == rock / user 졌다
+    // user == paper , computer == rock / user 이김
+    // user == paper, computer = scissors / user 졌다
+    // if(user == computer) < -- 이렇게 객체끼리 비교하는거 아니고 객체 안에 name으로 비교할거
+
+    // if(user.name == computer.name){
+    //   return "tie"
+    // }else if(user.name=="Rock"){
+    //   if(computer=="Scissors"){
+    //     return "win"
+    //   }else {
+    //     return "lose"
+    //   }
+    // }
+    // 삼항연산식으로 변경하기
+    if (user.name == computer.name) {
+      return 'tie';
+    } else if (user.name == 'Rock')
+      return computer.name == 'Scissors' ? 'win' : 'lose';
+    else if (user.name == 'Scissors')
+      return computer.name == 'Paper' ? 'win' : 'lose';
+    else if (user.name == 'Paper')
+      return computer.name == 'Rock' ? 'win' : 'lose';
+  };
+
   const randomChoice = () => {
     // 객체를 배열로 바꾸기
     let itemArray = Object.keys(choice); // Object.keys - > 객체에 있는 키 값만 뽑아서 배열로 만들어주는 함수다.
@@ -53,14 +93,14 @@ function App() {
     let randomItem = Math.floor(Math.random() * itemArray.length); //Math.floor = > 소수점 아래 버리기
     //console.log('랜덤아이템', randomItem);
     let final = itemArray[randomItem];
-    console.log('final', final);
+    //console.log('final', final);
     return choice[final]; // 여기서 리턴된 값은 위에서 호출한 computerChoice 안에 들어간다.
   };
   return (
     <div>
       <div className="main">
-        <Box title="you" item={userSelect} />
-        <Box title="computer" item={computerSelect} />
+        <Box title="you" item={userSelect} result={result} />
+        <Box title="computer" item={computerSelect} result={result} />
       </div>
       <div className="main">
         <button onClick={() => play('scissors')}>가위</button>

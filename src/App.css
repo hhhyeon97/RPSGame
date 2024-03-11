@@ -13,3 +13,16 @@
   justify-content: center;
   margin: 30px auto;
 }
+
+.win {
+  border: 5px solid green;
+  color: green;
+}
+.tie {
+  border: 5px solid rgb(0, 0, 0);
+  color: black;
+}
+.lose {
+  border: 5px solid rgb(228, 137, 102);
+  color: rgb(228, 137, 102);
+}
