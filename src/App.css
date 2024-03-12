@@ -14,6 +14,7 @@
   text-align: center;
   height: 400px;
   margin-left: 20px;
+  margin-right: 20px;
 }
 
 .item-img {
@@ -22,8 +23,6 @@
 }
 
 body {
-  margin: 0;
-  padding: 0;
   background-image: url('https://i.pinimg.com/564x/0d/12/da/0d12da9fa305616fa8949d2266708cda.jpg');
   background-size: cover;
   background-position: center;
@@ -53,7 +52,7 @@ body {
 .main {
   display: flex;
   justify-content: center;
-  margin: 30px auto;
+  margin: 30px 0;
 }
 
 .win {
@@ -82,20 +81,25 @@ i {
   color: white;
 }
 
+i:hover {
+  color: #d0dce9;
+}
+
 @media only screen and (max-width: 768px) {
   .box {
-    width: 200px;
+    width: 260px;
     height: 200px;
     margin-bottom: 20px;
-    position: relative;
-    left: 12px;
   }
   .item-img {
     width: 80%;
-    height: 50%;
+    height: 70%;
+    margin-top: 5px;
   }
   .main {
     flex-direction: column;
+    width: 400px;
+    align-items: center;
   }
   .btn-area {
     flex-direction: row;
@@ -124,10 +128,9 @@ i {
   }
   h1,
   h2 {
-    font-size: 20px;
+    font-size: 18px;
+    margin: 0;
   }
   h2 {
-    position: relative;
-    bottom: 10px;
   }
 }
