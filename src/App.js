@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import Box from './component/Box'; // 박스 컴포넌트 불러오기
 
@@ -22,6 +22,17 @@ function App() {
   const [userSelect, setUserSelect] = useState(null);
   const [computerSelect, setComputerSelect] = useState(null);
   const [result, setResult] = useState('');
+  const [bgm] = useState(new Audio('/bgm.mp3'));
+
+  useEffect(() => {
+    if (gameStarted) {
+      bgm.play();
+      bgm.volume = 0.5; // 볼륨 조절 (0.5는 50%의 볼륨)
+    } else {
+      bgm.pause();
+      bgm.currentTime = 0; // 재생 위치를 처음으로 되돌림
+    }
+  }, [gameStarted, bgm]);
 
   const play = (userChoice) => {
     setUserSelect(choice[userChoice]);

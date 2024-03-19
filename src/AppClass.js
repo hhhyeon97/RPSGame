@@ -95,3 +95,12 @@ export default class AppClass extends Component {
     );
   }
 }
+
+/* 함수형 컴포넌트 - > 클래스 컴포넌트로 변경할 시 
+React.Component를 상속하여 클래스 컴포넌트를 생성
+생성자 메서드를 사용하여 초기 상태를 설정
+화살표 함수로 선언된 메서드는 클래스의 멤버 함수로 변경된다.
+상태 업데이트는 setState 메서드를 사용하여 수행된다.
+렌더링 메서드(render()) 안에서 this.state를 사용하여 상태에 접근 가능 
+함수형 컴포넌트에서 props를 사용하는 부분은 클래스 컴포넌트에서 this.props로 접근 가능
+*/
