@@ -23,14 +23,14 @@ function App() {
   const [computerSelect, setComputerSelect] = useState(null);
   const [result, setResult] = useState('');
   const [bgm] = useState(new Audio('/bgm.mp3'));
+  const [userName, setUserName] = useState('');
 
   useEffect(() => {
     if (gameStarted) {
-      bgm.play();
-      bgm.volume = 0.5; // 볼륨 조절 (0.5는 50%의 볼륨)
-    } else {
-      bgm.pause();
-      bgm.currentTime = 0; // 재생 위치를 처음으로 되돌림
+      bgm.volume = 0.3; // 오디오 볼륨 설정
+      setTimeout(() => {
+        bgm.play();
+      }, 1000); // 살짝 텀두고 재생하자
     }
   }, [gameStarted, bgm]);
 
@@ -62,6 +62,26 @@ function App() {
 
   // 게임 시작 버튼 클릭 시 게임 시작 상태 변경
   const startGame = () => {
+    // if (userName.trim() === '') {
+    //   alert('닉네임을 입력하세요 !');
+    //   return;
+    // }
+    // if (userName.length > 10) {
+    //   alert('10글자 이하의 닉네임을 입력하세요 !');
+    //   return;
+    // }
+    if (userName.trim() === '' || userName.length > 10) {
+      //console.log('왜 경고창이 안 뜨지 ? - > 버튼 비활성화 푸니까 됨!');
+      alert('닉네임을 입력하세요(10글자 이하)');
+      setUserName(''); // 입력창 내용 지워주기
+      setTimeout(() => {
+        const inputElement = document.querySelector('input[type="text"]');
+        if (inputElement) {
+          inputElement.focus();
+        }
+      }, 0); // 0ms 후에 실행하여 포커스를 주도록 함
+      return;
+    }
     setGameStarted(true);
   };
 
@@ -69,6 +89,13 @@ function App() {
   if (!gameStarted) {
     return (
       <div className="start">
+        <input
+          id="inputName"
+          type="text"
+          placeholder="닉네임을 입력하세요 : )"
+          value={userName}
+          onChange={(e) => setUserName(e.target.value)}
+        />
         <button onClick={startGame}>Game Start</button>
       </div>
     );
@@ -78,7 +105,7 @@ function App() {
   return (
     <div>
       <div className="main">
-        <Box title="you" item={userSelect} result={result} />
+        <Box title={userName} item={userSelect} result={result} />
         <Box title="computer" item={computerSelect} result={result} />
       </div>
       <div className="main btn-area">

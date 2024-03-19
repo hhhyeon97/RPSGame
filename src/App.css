@@ -36,6 +36,8 @@ body {
 
 .start {
   text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 .start button {
   border: 3px solid black;
@@ -47,6 +49,19 @@ body {
   height: 130px;
   font-size: 40px;
   font-family: 'MaplestoryOTFBold';
+}
+
+#inputName {
+  margin-bottom: 20px;
+  outline: none;
+  border: 3px solid black;
+  border-radius: 6px;
+  height: 50px;
+  font-family: 'MaplestoryOTFBold';
+  width: 190px;
+}
+input[type='text']::placeholder {
+  text-align: center;
 }
 
 .main {
@@ -125,6 +140,9 @@ i:hover {
     width: 170px;
     height: 100px;
     font-size: 25px;
+  }
+  #inputName {
+    width: 160px;
   }
   h1,
   h2 {
